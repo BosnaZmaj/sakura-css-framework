@@ -1,0 +1,403 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Sakura CSS Framework - Custom Components */
+
+@layer base {
+  html {
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Sakura Navigation Components */
+  .sakura-navbar {
+    @apply bg-white/70 border-b border-sakura-gray-200/60 py-4 sticky top-0 z-50;
+    backdrop-filter: blur(30px) saturate(180%);
+    box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
+  }
+
+  .sakura-navbar-container {
+    @apply flex items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .sakura-navbar-brand {
+    @apply flex items-center gap-3 font-semibold text-sakura-primary no-underline;
+  }
+
+  .sakura-navbar-logo {
+    @apply h-8 rounded-xl;
+    width: auto;
+  }
+
+  .sakura-navbar-logo--large {
+    @apply h-20;
+    width: auto;
+  }
+
+  .sakura-navbar-title {
+    @apply text-xl font-heading;
+  }
+
+  /* Desktop: Show menu horizontally on the right */
+  .sakura-navbar-menu {
+    @apply flex items-center gap-8;
+  }
+
+  .sakura-navbar-link {
+    @apply text-sakura-gray-600 font-medium transition-colors duration-200 hover:text-sakura-primary no-underline;
+  }
+
+  /* Desktop: Hide toggle button */
+  .sakura-navbar-toggle {
+    @apply hidden flex-col gap-1 bg-transparent border-0 cursor-pointer p-2;
+  }
+
+  .sakura-navbar-toggle span {
+    @apply w-6 h-0.5 bg-sakura-gray-600 rounded-sm transition-all duration-200;
+  }
+
+  .sakura-navbar-toggle.active span:first-child {
+    @apply rotate-45 translate-y-2;
+  }
+
+  .sakura-navbar-toggle.active span:nth-child(2) {
+    @apply opacity-0;
+  }
+
+  .sakura-navbar-toggle.active span:last-child {
+    @apply -rotate-45 -translate-y-2;
+  }
+
+  /* Mobile responsive styles */
+  @media (max-width: 768px) {
+    /* Hide menu by default on mobile */
+    .sakura-navbar-menu {
+      @apply hidden absolute top-full left-0 w-full bg-white/95 border-b border-sakura-gray-200/60 p-4 flex-col gap-4;
+      backdrop-filter: blur(30px) saturate(180%);
+    }
+
+    /* Show menu when active on mobile */
+    .sakura-navbar-menu.active {
+      @apply flex;
+    }
+
+    /* Show toggle button on mobile */
+    .sakura-navbar-toggle {
+      @apply flex;
+    }
+  }
+
+  /* Sakura Button Components - Basic versions for navigation */
+  .sakura-btn {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-2xl transition-all duration-200 no-underline border;
+  }
+
+  .sakura-btn--sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+
+  .sakura-btn--primary {
+    @apply bg-sakura-primary text-white border-sakura-primary hover:bg-sakura-primary-light;
+  }
+
+  .sakura-btn--outline {
+    @apply bg-transparent text-sakura-primary border-sakura-primary hover:bg-sakura-primary hover:text-white;
+  }
+
+  .sakura-btn--lg {
+    @apply px-6 py-3 text-base;
+  }
+
+  /* Sakura Container */
+  .sakura-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Sakura Hero Section */
+  .sakura-hero {
+    @apply py-24 bg-gradient-to-br from-white to-sakura-gray-50 overflow-hidden relative;
+  }
+
+  .sakura-hero::before {
+    content: '';
+    @apply absolute w-[1000px] h-[1000px] rounded-full;
+    top: -50%;
+    right: -20%;
+    background: radial-gradient(circle, rgba(91, 139, 245, 0.2) 0%, transparent 60%);
+    filter: blur(80px);
+    animation: sakuraHeroFloat 20s ease-in-out infinite;
+  }
+
+  .sakura-hero::after {
+    content: '';
+    @apply absolute w-[800px] h-[800px] rounded-full;
+    bottom: -30%;
+    left: -10%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
+    filter: blur(80px);
+    animation: sakuraHeroFloat 25s ease-in-out infinite reverse;
+  }
+
+  @keyframes sakuraHeroFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(100px, -50px) scale(1.1); }
+    66% { transform: translate(-50px, 100px) scale(0.95); }
+  }
+
+  .sakura-hero-container {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10;
+  }
+
+  .sakura-hero-title {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-sakura-gray-900 font-heading;
+  }
+
+  .sakura-hero-subtitle {
+    @apply text-lg sm:text-xl text-sakura-gray-600 mb-8 leading-relaxed;
+  }
+
+  .sakura-hero-actions {
+    @apply flex flex-col sm:flex-row gap-4 mb-12;
+  }
+
+  .sakura-hero-stats {
+    @apply flex flex-col sm:flex-row gap-8;
+  }
+
+  .sakura-stat {
+    @apply flex flex-col gap-1;
+  }
+
+  .sakura-stat-number {
+    @apply text-2xl font-bold text-sakura-primary font-heading;
+  }
+
+  .sakura-stat-label {
+    @apply text-sm text-sakura-gray-500;
+  }
+
+  /* Sakura Dashboard Preview */
+  .sakura-dashboard-preview {
+    @apply bg-white/95 rounded-5xl shadow-2xl overflow-hidden relative border border-sakura-gray-200/80;
+    backdrop-filter: blur(10px);
+    transform: perspective(1200px) rotateY(-8deg) rotateX(6deg);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:
+      0 30px 40px -15px rgb(0 0 0 / 0.1),
+      0 12px 20px -8px rgb(0 0 0 / 0.06),
+      0 0 0 1px rgba(91, 139, 245, 0.1);
+  }
+
+  .sakura-dashboard-preview:hover {
+    transform: perspective(1200px) rotateY(-4deg) rotateX(3deg);
+  }
+
+  .sakura-preview-header {
+    @apply p-4 bg-sakura-gray-50/80 border-b border-sakura-gray-200/60;
+  }
+
+  .sakura-preview-dots {
+    @apply flex gap-2;
+  }
+
+  .sakura-preview-dots span {
+    @apply w-3 h-3 rounded-full bg-sakura-gray-300;
+  }
+
+  .sakura-preview-dots span:first-child {
+    @apply bg-red-400;
+  }
+
+  .sakura-preview-dots span:nth-child(2) {
+    @apply bg-yellow-400;
+  }
+
+  .sakura-preview-dots span:last-child {
+    @apply bg-green-400;
+  }
+
+  .sakura-preview-content {
+    @apply p-6 space-y-4;
+  }
+
+  .sakura-preview-envelope {
+    @apply flex items-center justify-between p-4 bg-sakura-gray-50/60 rounded-2xl;
+  }
+
+  .sakura-envelope-name {
+    @apply font-medium text-sakura-gray-900;
+  }
+
+  .sakura-envelope-amount {
+    @apply font-semibold text-sakura-primary;
+  }
+
+  .sakura-envelope-progress {
+    @apply w-full bg-sakura-gray-200 rounded-full h-2 mt-2;
+  }
+
+  .sakura-progress-bar {
+    @apply bg-sakura-secondary rounded-full h-2 transition-all duration-300;
+  }
+
+  .sakura-preview-chart {
+    @apply w-16 h-16 rounded-full mx-auto mt-4 relative;
+    background: conic-gradient(
+      from 0deg,
+      #5b8bf5 0deg 144deg,
+      #10b981 144deg 252deg,
+      #f59e0b 252deg 360deg
+    );
+  }
+
+  /* Sakura Features Section */
+  .sakura-features {
+    @apply py-24;
+  }
+
+  .sakura-section-header {
+    @apply text-center mb-16;
+  }
+
+  .sakura-section-header h2 {
+    @apply text-3xl sm:text-4xl font-bold mb-4 text-sakura-gray-900 font-heading;
+  }
+
+  .sakura-section-header p {
+    @apply text-lg text-sakura-gray-600;
+  }
+
+  .sakura-features-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+
+  .sakura-feature-card {
+    @apply p-10 bg-white/80 border border-sakura-gray-200/60 rounded-5xl text-center relative overflow-hidden;
+    backdrop-filter: blur(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-feature-card::after {
+    content: '';
+    @apply absolute w-32 h-32 rounded-full opacity-10;
+    top: -50%;
+    right: -50%;
+    background: linear-gradient(135deg, #5b8bf5, #10b981);
+    filter: blur(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-feature-card:hover {
+    @apply -translate-y-2 shadow-elevated;
+  }
+
+  .sakura-feature-card:hover::after {
+    @apply opacity-20 scale-110;
+  }
+
+  .sakura-feature-icon {
+    @apply w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-sakura-secondary to-sakura-secondary-light rounded-3xl flex items-center justify-center text-white text-3xl;
+  }
+
+  .sakura-feature-card h3 {
+    @apply text-xl font-semibold mb-4 text-sakura-gray-900 font-heading;
+  }
+
+  .sakura-feature-card p {
+    @apply text-sakura-gray-600 leading-relaxed;
+  }
+
+  /* Sakura CTA Section */
+  .sakura-cta {
+    @apply py-24 bg-gradient-to-br from-sakura-primary to-sakura-primary-light text-white text-center;
+  }
+
+  .sakura-cta h2 {
+    @apply text-3xl sm:text-4xl font-bold mb-6 text-white font-heading;
+  }
+
+  .sakura-cta p {
+    @apply text-lg text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed;
+  }
+
+  .sakura-cta .sakura-btn--primary {
+    @apply bg-white text-sakura-primary border-white mb-4 hover:bg-sakura-gray-100 hover:border-sakura-gray-100;
+  }
+
+  .sakura-cta-note {
+    @apply text-sm text-white/80 mb-0;
+  }
+
+  /* Sakura Footer */
+  .sakura-footer {
+    @apply bg-sakura-gray-900 text-sakura-gray-300 py-16;
+  }
+
+  .sakura-footer-content {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12;
+  }
+
+  .sakura-footer-brand {
+    @apply flex flex-col gap-4;
+  }
+
+  .sakura-footer-brand .sakura-navbar-brand {
+    @apply text-white;
+  }
+
+  .sakura-footer-brand p {
+    @apply text-sakura-gray-400 mb-0;
+  }
+
+  .sakura-footer-links {
+    @apply grid grid-cols-1 sm:grid-cols-3 gap-8;
+  }
+
+  .sakura-footer-column h4 {
+    @apply text-white font-semibold mb-4 font-heading;
+  }
+
+  .sakura-footer-column a {
+    @apply block text-sakura-gray-400 hover:text-white transition-colors duration-200 mb-2 no-underline;
+  }
+
+  .sakura-footer-bottom {
+    @apply border-t border-sakura-gray-800 pt-8 text-center;
+  }
+
+  .sakura-footer-bottom p {
+    @apply text-sakura-gray-500 mb-0;
+  }
+
+  /* Utility Classes */
+  .sakura-text-primary {
+    @apply text-sakura-primary;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .sakura-hero-title {
+      @apply text-4xl;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sakura-hero {
+      @apply py-16;
+    }
+
+    .sakura-features {
+      @apply py-16;
+    }
+
+    .sakura-cta {
+      @apply py-16;
+    }
+  }
+}
