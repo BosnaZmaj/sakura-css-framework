@@ -967,6 +967,7 @@ class SakuraFramework {
     }
   }
 
+
 }
 
 // Initialize framework when DOM is loaded

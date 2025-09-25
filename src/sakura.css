@@ -870,6 +870,208 @@
     z-index: 1;
   }
 
+  /* Sakura Testimonials Section */
+  .sakura-testimonials {
+    @apply py-20 bg-white;
+  }
+
+  .sakura-testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 32px;
+    margin-top: 48px;
+  }
+
+  .sakura-testimonial-card {
+    @apply rounded-3xl p-8 relative overflow-hidden;
+    background: linear-gradient(135deg,
+      rgba(91, 139, 245, 0.02) 0%,
+      rgba(139, 92, 246, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-top: 2px solid rgba(91, 139, 245, 0.2);
+    border-right: 2px solid rgba(91, 139, 245, 0.2);
+    border-bottom: 2px solid rgba(91, 139, 245, 0.2);
+    border-left: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+  }
+
+  /* Gradient accent on the left */
+  .sakura-testimonial-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #5b8bf5 0%, #8b5cf6 100%);
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* Top highlight */
+  .sakura-testimonial-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.9) 25%,
+      rgba(255, 255, 255, 0.9) 75%,
+      transparent 100%);
+  }
+
+
+  .sakura-testimonial-content {
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .sakura-testimonial-content p {
+    @apply text-slate-700 text-lg leading-relaxed;
+    margin: 0;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.7;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  /* Quote styling */
+  .sakura-testimonial-content p::before {
+    content: '"';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    font-size: 4rem;
+    line-height: 1;
+    font-family: Georgia, serif;
+    color: rgba(91, 139, 245, 0.15);
+    z-index: -1;
+  }
+
+  .sakura-testimonial-content p::after {
+    content: '"';
+    position: absolute;
+    bottom: -24px;
+    right: 8px;
+    font-size: 3rem;
+    line-height: 1;
+    font-family: Georgia, serif;
+    color: rgba(139, 92, 246, 0.15);
+    z-index: -1;
+  }
+
+  .sakura-testimonial-author {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    margin: -8px -8px -8px -8px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+
+  .sakura-testimonial-info {
+    width: 100%;
+  }
+
+  .sakura-testimonial-name {
+    @apply font-semibold text-slate-900 text-lg;
+    margin-bottom: 4px;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .sakura-testimonial-detail {
+    @apply text-slate-600 text-sm;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .sakura-testimonial-result {
+    @apply text-sm font-semibold;
+    display: inline-block;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, rgba(91, 139, 245, 0.1), rgba(139, 92, 246, 0.1));
+    border-radius: 20px;
+    border: 1px solid rgba(91, 139, 245, 0.2);
+    color: #5b8bf5;
+    font-weight: 600;
+  }
+
+  /* Add some variety to cards */
+  .sakura-testimonial-card:nth-child(2) {
+    background: linear-gradient(135deg,
+      rgba(16, 185, 129, 0.02) 0%,
+      rgba(5, 150, 105, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(16, 185, 129, 0.2);
+    border-right: 2px solid rgba(16, 185, 129, 0.2);
+    border-bottom: 2px solid rgba(16, 185, 129, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(2)::before {
+    background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(2) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+    border-color: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+  }
+
+  .sakura-testimonial-card:nth-child(3) {
+    background: linear-gradient(135deg,
+      rgba(245, 158, 11, 0.02) 0%,
+      rgba(217, 119, 6, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(245, 158, 11, 0.2);
+    border-right: 2px solid rgba(245, 158, 11, 0.2);
+    border-bottom: 2px solid rgba(245, 158, 11, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(3)::before {
+    background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(3) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1));
+    border-color: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .sakura-testimonials-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .sakura-testimonial-card {
+      padding: 24px;
+    }
+
+    .sakura-testimonial-content p {
+      font-size: 16px;
+      padding-left: 16px;
+    }
+
+    .sakura-testimonial-author {
+      padding: 16px;
+      margin: -4px -4px -4px -4px;
+    }
+  }
+
   /* Sakura CTA Section */
   .sakura-cta {
     @apply py-24 text-center relative overflow-hidden;
