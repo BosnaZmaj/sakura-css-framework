@@ -32,80 +32,116 @@
 @layer components {
   /* Sakura Navigation Components */
   .sakura-navbar {
-    @apply bg-white/95 py-4 fixed top-0 left-0 w-full z-50;
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(226, 232, 240, 0.3);
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(30px) saturate(180%);
+    box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
+    @apply w-full;
   }
 
   .sakura-navbar-container {
-    @apply flex items-center justify-between max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .sakura-navbar-brand {
-    @apply flex items-center gap-3 font-semibold text-sakura-primary no-underline;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+    color: #1e2a3b;
+    text-decoration: none;
   }
 
   .sakura-navbar-logo {
-    @apply h-8 rounded-xl;
-    width: auto;
-  }
-
-  .sakura-navbar-logo--large {
-    @apply h-20;
-    width: auto;
+    width: 32px;
+    height: 32px;
+    border-radius: 0.75rem;
   }
 
   .sakura-navbar-title {
-    @apply text-xl font-heading;
+    font-size: 1.25rem;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
-  /* Desktop: Show menu horizontally on the right */
   .sakura-navbar-menu {
-    @apply flex items-center gap-8;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
   }
 
   .sakura-navbar-link {
-    @apply text-sakura-gray-600 font-medium transition-colors duration-200 hover:text-sakura-primary no-underline;
+    color: #475569;
+    font-weight: 500;
+    transition: color 150ms ease;
+    text-decoration: none;
   }
 
-  /* Desktop: Hide toggle button */
+  .sakura-navbar-link:hover {
+    color: #1e2a3b;
+  }
+
   .sakura-navbar-toggle {
-    @apply hidden flex-col gap-1 bg-transparent border-0 cursor-pointer p-2;
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
   }
 
   .sakura-navbar-toggle span {
-    @apply w-6 h-0.5 bg-sakura-gray-600 rounded-sm transition-all duration-200;
+    width: 24px;
+    height: 2px;
+    background-color: #475569;
+    border-radius: 1px;
+    transition: all 150ms ease;
   }
 
   .sakura-navbar-toggle.active span:first-child {
-    @apply rotate-45 translate-y-2;
+    transform: rotate(45deg) translateY(7px);
   }
 
   .sakura-navbar-toggle.active span:nth-child(2) {
-    @apply opacity-0;
+    opacity: 0;
   }
 
   .sakura-navbar-toggle.active span:last-child {
-    @apply -rotate-45 -translate-y-2;
+    transform: rotate(-45deg) translateY(-7px);
   }
 
   /* Mobile responsive styles */
   @media (max-width: 768px) {
-    /* Hide menu by default on mobile */
     .sakura-navbar-menu {
-      @apply hidden absolute top-full left-0 w-full bg-white/95 border-b border-sakura-gray-200/60 p-4 flex-col gap-4;
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+      padding: 1rem;
+      flex-direction: column;
+      gap: 1rem;
       backdrop-filter: blur(30px) saturate(180%);
     }
 
-    /* Show menu when active on mobile */
     .sakura-navbar-menu.active {
-      @apply flex;
+      display: flex;
     }
 
-    /* Show toggle button on mobile */
     .sakura-navbar-toggle {
-      @apply flex;
+      display: flex;
     }
   }
 
@@ -153,7 +189,7 @@
 
   /* Sakura Hero Section */
   .sakura-hero {
-    @apply pt-48 pb-32 bg-gradient-to-br from-white to-sakura-gray-50 overflow-hidden relative;
+    @apply pt-48 pb-0 bg-gradient-to-br from-white to-sakura-gray-50 overflow-hidden relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -164,7 +200,7 @@
     @apply absolute w-[1000px] h-[1000px] rounded-full;
     top: -50%;
     right: -20%;
-    background: radial-gradient(circle, rgba(91, 139, 245, 0.2) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(91, 139, 245, 0.55) 0%, transparent 60%);
     filter: blur(80px);
     animation: sakuraHeroFloat 20s ease-in-out infinite;
   }
@@ -174,7 +210,7 @@
     @apply absolute w-[800px] h-[800px] rounded-full;
     bottom: -30%;
     left: -10%;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.45) 0%, transparent 60%);
     filter: blur(80px);
     animation: sakuraHeroFloat 25s ease-in-out infinite reverse;
   }
@@ -241,7 +277,7 @@
   }
 
   .sakura-hero-stats {
-    @apply flex flex-col sm:flex-row gap-12 lg:gap-16;
+    @apply flex flex-col sm:flex-row gap-12 lg:gap-16 mb-20;
     animation: sakuraFadeInUp 0.8s ease-out 0.8s both;
   }
 
@@ -257,6 +293,49 @@
   .sakura-stat-label {
     @apply text-base text-sakura-gray-500 font-medium;
     letter-spacing: 0.01em;
+  }
+
+  /* Sakura Wave Transition */
+  .sakura-hero-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    z-index: 20;
+    pointer-events: none;
+  }
+
+  .sakura-hero-wave svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .sakura-wave-path {
+    fill: white;
+    opacity: 0.95;
+  }
+
+  .sakura-wave-gradient {
+    fill: url(#sakura-wave-gradient);
+    opacity: 0.8;
+  }
+
+  @keyframes sakuraWaveFloat {
+    0%, 100% {
+      transform: translateX(0px) translateY(0px);
+    }
+    33% {
+      transform: translateX(-30px) translateY(-10px);
+    }
+    66% {
+      transform: translateX(30px) translateY(-5px);
+    }
+  }
+
+  .sakura-wave-animated {
+    animation: sakuraWaveFloat 15s ease-in-out infinite;
   }
 
   /* Sakura Dashboard Preview */
@@ -295,7 +374,8 @@
 
   /* Sakura Features Section */
   .sakura-features {
-    @apply py-24;
+    @apply py-24 bg-white relative;
+    z-index: 10;
   }
 
   .sakura-section-header {
@@ -445,11 +525,19 @@
     .sakura-hero-title {
       @apply text-4xl;
     }
+
+    .sakura-hero-wave {
+      height: 100px;
+    }
   }
 
   @media (max-width: 768px) {
     .sakura-hero {
-      @apply py-16;
+      @apply pt-32 pb-0;
+    }
+
+    .sakura-hero-wave {
+      height: 80px;
     }
 
     .sakura-features {
