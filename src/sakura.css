@@ -189,7 +189,7 @@
 
   /* Sakura Hero Section */
   .sakura-hero {
-    @apply pt-48 pb-0 bg-gradient-to-br from-white to-sakura-gray-50 overflow-hidden relative;
+    @apply pt-8 pb-0 bg-gradient-to-br from-white to-sakura-gray-50 overflow-hidden relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -257,14 +257,14 @@
   }
 
   .sakura-hero-title {
-    @apply text-4xl sm:text-5xl lg:text-6xl font-bold text-sakura-gray-900 font-heading mb-6;
+    @apply text-3xl sm:text-4xl lg:text-5xl font-bold text-sakura-gray-900 font-heading mb-6;
     line-height: 1.1;
     letter-spacing: -0.02em;
     animation: sakuraFadeInUp 0.8s ease-out 0.2s both;
   }
 
   .sakura-hero-subtitle {
-    @apply text-lg sm:text-xl lg:text-2xl text-sakura-gray-600 mb-8;
+    @apply text-base sm:text-lg lg:text-xl text-sakura-gray-600 mb-8;
     line-height: 1.6;
     font-weight: 400;
     max-width: 600px;
@@ -286,12 +286,12 @@
   }
 
   .sakura-stat-number {
-    @apply text-3xl sm:text-4xl font-bold text-sakura-primary font-heading;
+    @apply text-2xl sm:text-3xl font-bold text-sakura-primary font-heading;
     letter-spacing: -0.01em;
   }
 
   .sakura-stat-label {
-    @apply text-base text-sakura-gray-500 font-medium;
+    @apply text-sm text-sakura-gray-500 font-medium;
     letter-spacing: 0.01em;
   }
 
@@ -523,7 +523,7 @@
   /* Responsive adjustments */
   @media (max-width: 1024px) {
     .sakura-hero-title {
-      @apply text-4xl;
+      @apply text-3xl;
     }
 
     .sakura-hero-wave {
@@ -533,7 +533,7 @@
 
   @media (max-width: 768px) {
     .sakura-hero {
-      @apply pt-32 pb-0;
+      @apply pt-6 pb-0;
     }
 
     .sakura-hero-wave {
