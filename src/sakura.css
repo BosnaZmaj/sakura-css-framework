@@ -166,9 +166,7 @@
   }
 
   .sakura-btn--primary:hover {
-    @apply bg-sakura-primary-light;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(30, 42, 59, 0.3);
+    @apply bg-transparent text-sakura-primary;
   }
 
   .sakura-btn--outline {
@@ -179,12 +177,66 @@
 
   .sakura-btn--outline:hover {
     @apply bg-sakura-primary text-white;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(91, 139, 245, 0.3);
   }
 
   .sakura-btn--lg {
     @apply px-8 py-4 text-lg font-semibold;
+  }
+
+  /* Sakura Animated Button - Inspired by Uiverse */
+  .sakura-btn--animated {
+    position: relative;
+    margin: auto;
+    padding: 1em 2.5em;
+    border: none;
+    background: #fff;
+    color: #464646;
+    font-size: 16px;
+    border-radius: 2em;
+    transition: all 0.1s linear;
+    box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sakura-btn--animated:active {
+    transform: scale(0.95);
+  }
+
+  .sakura-btn--animated .sakura-btn-border {
+    position: absolute;
+    border: 0.15em solid #fff;
+    transition: all 0.3s 0.08s linear;
+    top: 50%;
+    left: 50%;
+    width: 9em;
+    height: 3em;
+    transform: translate(-50%, -50%);
+    border-radius: 2em;
+    pointer-events: none;
+  }
+
+  .sakura-btn--animated:hover .sakura-btn-border {
+    width: 9.9em;
+    height: 3.7em;
+  }
+
+  /* Small animated button variant */
+  .sakura-btn--animated.sakura-btn--sm {
+    padding: 0.75em 2em;
+    font-size: 14px;
+  }
+
+  .sakura-btn--animated.sakura-btn--sm .sakura-btn-border {
+    width: 7em;
+    height: 2.5em;
+  }
+
+  .sakura-btn--animated.sakura-btn--sm:hover .sakura-btn-border {
+    width: 7.7em;
+    height: 3em;
   }
 
   /* Sakura Container */
@@ -820,40 +872,380 @@
 
   /* Sakura CTA Section */
   .sakura-cta {
-    @apply py-24 text-center relative;
-    color: white;
+    @apply py-24 text-center relative overflow-hidden;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+    color: #1e293b;
   }
 
   .sakura-cta::before {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(30, 42, 59, 0.9), rgba(91, 139, 245, 0.9));
+    @apply absolute w-[1000px] h-[1000px] rounded-full;
+    top: -30%;
+    right: -10%;
+    background: radial-gradient(circle, rgba(91, 139, 245, 0.55) 0%, transparent 60%);
+    filter: blur(80px);
+    animation: sakuraHeroFloat 20s ease-in-out infinite;
     z-index: 1;
   }
 
-  .sakura-cta > * {
+  .sakura-cta::after {
+    content: '';
+    @apply absolute w-[800px] h-[800px] rounded-full;
+    bottom: -30%;
+    left: -15%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.45) 0%, transparent 60%);
+    filter: blur(80px);
+    animation: sakuraHeroFloat 25s ease-in-out infinite reverse;
+    z-index: 1;
+  }
+
+  @keyframes sakuraHeroFloat {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    33% {
+      transform: translate(30px, -50px) rotate(120deg);
+    }
+    66% {
+      transform: translate(-20px, 20px) rotate(240deg);
+    }
+  }
+
+  .sakura-cta > .sakura-container {
     position: relative;
-    z-index: 2;
+    z-index: 3;
   }
 
   .sakura-cta h2 {
-    @apply text-3xl sm:text-4xl font-bold mb-6 text-white font-heading;
+    @apply text-3xl sm:text-4xl font-bold mb-6 text-sakura-gray-900 font-heading;
   }
 
   .sakura-cta p {
-    @apply text-lg text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed;
+    @apply text-lg text-sakura-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed;
   }
 
   .sakura-cta .sakura-btn--primary {
-    @apply bg-white text-sakura-primary border-white mb-4 hover:bg-sakura-gray-100 hover:border-sakura-gray-100;
+    @apply bg-sakura-primary text-white border-sakura-primary mb-4;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-cta .sakura-btn--primary:hover {
+    @apply bg-transparent text-sakura-primary;
   }
 
   .sakura-cta-note {
-    @apply text-sm text-white/80 mb-0;
+    @apply text-sm text-sakura-gray-600 mb-0;
+  }
+
+  /* CTA Buttons */
+  .sakura-cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 40px 0 24px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .sakura-cta-buttons .sakura-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    flex-shrink: 0;
+  }
+
+  .sakura-cta .sakura-btn--secondary {
+    @apply bg-transparent text-sakura-primary border border-sakura-primary;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-cta .sakura-btn--secondary:hover {
+    @apply bg-sakura-primary text-white;
+  }
+
+  .sakura-cta .sakura-btn--ghost {
+    @apply bg-transparent text-sakura-gray-600 border-0 hover:text-sakura-gray-800 hover:bg-sakura-gray-50;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: rgba(107, 114, 128, 0.4);
+  }
+
+  .sakura-cta .sakura-btn--ghost:hover {
+    text-decoration-color: rgba(107, 114, 128, 0.8);
+  }
+
+  /* Risk Reversal & Urgency Elements */
+  .sakura-risk-reversal {
+    margin-top: 32px;
+    padding-top: 24px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .sakura-guarantee-badges {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .sakura-guarantee-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: #475569;
+    font-weight: 500;
+    padding: 0 8px;
+  }
+
+  .sakura-guarantee-item i {
+    color: #10B981;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .sakura-urgency-element {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+    margin-bottom: 16px;
+  }
+
+  .sakura-urgency-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+  }
+
+  .sakura-urgency-badge i {
+    color: #dc2626;
+    font-size: 0.875rem;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  /* Mobile responsiveness for risk reversal */
+  @media (max-width: 768px) {
+    .sakura-guarantee-badges {
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .sakura-guarantee-item {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+
+  /* Trust Signals */
+  .sakura-trust-signals {
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(148, 163, 184, 0.3);
+  }
+
+  .sakura-trust-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .sakura-trust-item {
+    text-align: center;
+    min-width: 100px;
+  }
+
+  .sakura-trust-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 4px;
+    font-family: inherit;
+  }
+
+  .sakura-trust-label {
+    font-size: 0.875rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
+
+  .sakura-trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .sakura-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+  }
+
+  .sakura-badge i {
+    color: #10B981;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  /* CTA Wave Styling */
+  .sakura-cta-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 120px;
+    z-index: 2;
+  }
+
+  .sakura-cta-wave--top {
+    top: 0;
+  }
+
+  .sakura-cta-wave--bottom {
+    bottom: 0;
+  }
+
+  .sakura-cta-wave svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .sakura-cta-wave .sakura-wave-animated {
+    animation: sakuraWaveFloat 15s ease-in-out infinite;
+    transform-origin: center center;
+  }
+
+  /* Enhanced wave animation specifically for CTA */
+  @keyframes sakuraCTAWaveFloat {
+    0%, 100% {
+      transform: translateX(0px) translateY(0px) scale(1);
+    }
+    25% {
+      transform: translateX(-20px) translateY(-8px) scale(1.01);
+    }
+    50% {
+      transform: translateX(15px) translateY(5px) scale(0.99);
+    }
+    75% {
+      transform: translateX(20px) translateY(-6px) scale(1.005);
+    }
+  }
+
+  .sakura-cta-wave .sakura-wave-animated {
+    animation: sakuraCTAWaveFloat 12s ease-in-out infinite;
+  }
+
+  /* CTA Features Recap */
+  .sakura-cta-features-recap {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin: 32px 0 40px;
+    flex-wrap: wrap;
+  }
+
+  .sakura-recap-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #1e2a3b;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .sakura-recap-item i {
+    color: #10B981;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .sakura-cta-buttons {
+      flex-direction: column;
+      gap: 12px;
+      margin: 32px 0 20px;
+    }
+
+    .sakura-cta .sakura-btn--lg {
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .sakura-cta-features-recap {
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin: 24px 0 32px;
+    }
+
+    .sakura-recap-item {
+      justify-content: center;
+    }
+
+    .sakura-trust-stats {
+      gap: 32px;
+    }
+
+    .sakura-trust-badges {
+      gap: 16px;
+    }
+
+    .sakura-badge {
+      font-size: 0.8125rem;
+      padding: 6px 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .sakura-cta-buttons {
+      gap: 10px;
+    }
+
+    .sakura-cta .sakura-btn--lg {
+      max-width: 100%;
+      padding: 14px 24px;
+      font-size: 0.95rem;
+    }
+
+    .sakura-trust-stats {
+      gap: 24px;
+    }
+
+    .sakura-trust-number {
+      font-size: 1.5rem;
+    }
+
+    .sakura-trust-badges {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sakura-badge {
+      justify-content: center;
+      min-width: 200px;
+    }
   }
 
   /* Sakura Footer */

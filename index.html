@@ -22,7 +22,7 @@
                 <a href="#pricing" class="sakura-navbar-link">Pricing</a>
                 <a href="#about" class="sakura-navbar-link">About</a>
                 <a href="login.html" class="sakura-btn sakura-btn--outline sakura-btn--sm">Sign In</a>
-                <a href="signup.html" class="sakura-btn sakura-btn--primary sakura-btn--sm">Get Started</a>
+                <a href="signup.html" class="sakura-btn sakura-btn--primary sakura-btn--sm">Sign Up</a>
             </div>
             <button class="sakura-navbar-toggle" id="navToggle">
                 <span></span>
@@ -160,13 +160,151 @@
 
     <!-- CTA Section -->
     <section class="sakura-cta">
+        <!-- Top Wave -->
+        <div class="sakura-cta-wave sakura-cta-wave--top">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="sakura-cta-wave-gradient-1" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(255,255,255,1);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(248,250,252,0.9);stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="sakura-cta-wave-gradient-2" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(255,255,255,0.95);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(248,250,252,0.4);stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Background feathering wave -->
+                <path fill="url(#sakura-cta-wave-gradient-2)"
+                      d="M0,80 C150,30 350,100 600,70 C850,40 1050,110 1200,80 L1200,0 L0,0 Z">
+                </path>
+
+                <!-- Main wave -->
+                <path fill="url(#sakura-cta-wave-gradient-1)"
+                      d="M0,60 C300,20 600,100 900,60 C1050,40 1150,80 1200,60 L1200,0 L0,0 Z">
+                </path>
+
+                <!-- Top feathering wave for smooth morphing -->
+                <path class="sakura-wave-animated" fill="white" opacity="0.8"
+                      d="M0,40 C200,90 400,10 600,50 C800,90 1000,20 1200,60 L1200,0 L0,0 Z">
+                </path>
+            </svg>
+        </div>
+
         <div class="sakura-container">
             <div class="sakura-cta-content">
-                <h2>Ready to transform your finances?</h2>
-                <p>Join thousands of families who've taken control of their money with envelope budgeting.</p>
-                <a href="signup.html" class="sakura-btn sakura-btn--primary sakura-btn--lg">Start Your Free Trial</a>
-                <p class="sakura-cta-note">No credit card required • 30-day free trial • Cancel anytime</p>
+                <h2>Start budgeting like a pro in under 5 minutes</h2>
+                <p>Smart envelopes + automatic allocation + visual insights = financial peace of mind. Join 15,000+ families who've stopped wondering where their money goes.</p>
+                <div class="sakura-cta-features-recap">
+                    <div class="sakura-recap-item">
+                        <i class="bi bi-check-circle"></i>
+                        <span>Never overspend again</span>
+                    </div>
+                    <div class="sakura-recap-item">
+                        <i class="bi bi-check-circle"></i>
+                        <span>Automate your entire budget</span>
+                    </div>
+                    <div class="sakura-recap-item">
+                        <i class="bi bi-check-circle"></i>
+                        <span>Reach your financial goals faster</span>
+                    </div>
+                </div>
+                <div class="sakura-cta-buttons">
+                    <a href="signup.html" class="sakura-btn sakura-btn--primary sakura-btn--lg">Start Your Free Trial</a>
+                    <a href="#demo" class="sakura-btn sakura-btn--primary sakura-btn--lg">Try Interactive Preview</a>
+                </div>
+                <p class="sakura-cta-note">No credit card required • 7-day free trial • Setup takes 3 minutes</p>
+
+                <!-- Risk Reversal Elements -->
+                <div class="sakura-risk-reversal">
+                    <div class="sakura-guarantee-badges">
+                        <div class="sakura-guarantee-item">
+                            <i class="bi bi-shield-check"></i>
+                            <span>30-day money-back guarantee</span>
+                        </div>
+                        <div class="sakura-guarantee-item">
+                            <i class="bi bi-x-circle"></i>
+                            <span>Cancel anytime, no questions asked</span>
+                        </div>
+                        <div class="sakura-guarantee-item">
+                            <i class="bi bi-download"></i>
+                            <span>Export your data at any time</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trust Signals -->
+                <div class="sakura-trust-signals">
+                    <div class="sakura-trust-stats">
+                        <div class="sakura-trust-item">
+                            <span class="sakura-trust-number">15,000+</span>
+                            <span class="sakura-trust-label">Happy Families</span>
+                        </div>
+                        <div class="sakura-trust-item">
+                            <span class="sakura-trust-number">$2.4M+</span>
+                            <span class="sakura-trust-label">Money Managed</span>
+                        </div>
+                        <div class="sakura-trust-item">
+                            <span class="sakura-trust-number">4.9★</span>
+                            <span class="sakura-trust-label">User Rating</span>
+                        </div>
+                    </div>
+
+                    <div class="sakura-trust-badges">
+                        <div class="sakura-badge">
+                            <i class="bi bi-shield-check"></i>
+                            <span>Bank-Level Security</span>
+                        </div>
+                        <div class="sakura-badge">
+                            <i class="bi bi-lock"></i>
+                            <span>256-bit SSL Encryption</span>
+                        </div>
+                        <div class="sakura-badge">
+                            <i class="bi bi-award"></i>
+                            <span>SOC 2 Compliant</span>
+                        </div>
+                    </div>
+
+                    <!-- Urgency Element -->
+                    <div class="sakura-urgency-element">
+                        <div class="sakura-urgency-badge">
+                            <i class="bi bi-clock"></i>
+                            <span>Join 847 families who started this week</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <!-- Bottom Wave -->
+        <div class="sakura-cta-wave sakura-cta-wave--bottom">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="sakura-cta-wave-gradient-3" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(248,250,252,0.9);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(255,255,255,1);stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="sakura-cta-wave-gradient-4" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(248,250,252,0.4);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(255,255,255,0.95);stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Background feathering wave -->
+                <path fill="url(#sakura-cta-wave-gradient-4)"
+                      d="M0,40 C150,90 350,20 600,50 C850,80 1050,10 1200,40 L1200,120 L0,120 Z">
+                </path>
+
+                <!-- Main wave -->
+                <path fill="url(#sakura-cta-wave-gradient-3)"
+                      d="M0,60 C300,100 600,20 900,60 C1050,80 1150,40 1200,60 L1200,120 L0,120 Z">
+                </path>
+
+                <!-- Top feathering wave for smooth morphing -->
+                <path class="sakura-wave-animated" fill="white" opacity="0.8"
+                      d="M0,80 C200,30 400,110 600,70 C800,30 1000,100 1200,60 L1200,120 L0,120 Z">
+                </path>
+            </svg>
         </div>
     </section>
 

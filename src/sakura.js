@@ -12,6 +12,7 @@ class SakuraFramework {
     this.setupCounters();
     this.setupFeatureModals();
     this.setupDemoModal();
+    this.setupUrgencyUpdater();
   }
 
   // Navigation functionality
@@ -918,6 +919,51 @@ class SakuraFramework {
 
     if (this.demoAvailableDisplay) {
       this.demoAvailableDisplay.textContent = `$${available.toLocaleString()}`;
+    }
+  }
+
+  // Urgency number updater - updates every Monday with a random number
+  setupUrgencyUpdater() {
+    const urgencyElement = document.querySelector('.sakura-urgency-badge span');
+    if (!urgencyElement) return;
+
+    // Check if we need to update the number
+    this.updateUrgencyNumber();
+
+    // Set up weekly update check (check every hour)
+    setInterval(() => {
+      this.updateUrgencyNumber();
+    }, 60 * 60 * 1000); // Check every hour
+  }
+
+  updateUrgencyNumber() {
+    const urgencyElement = document.querySelector('.sakura-urgency-badge span');
+    if (!urgencyElement) return;
+
+    const now = new Date();
+    const lastUpdate = localStorage.getItem('sakura-urgency-last-update');
+    const storedNumber = localStorage.getItem('sakura-urgency-number');
+
+    // Check if it's Monday and we haven't updated this week
+    const isMonday = now.getDay() === 1;
+    const lastUpdateDate = lastUpdate ? new Date(lastUpdate) : null;
+    const isNewWeek = !lastUpdateDate ||
+      (now.getTime() - lastUpdateDate.getTime()) > (7 * 24 * 60 * 60 * 1000) ||
+      (isMonday && lastUpdateDate && lastUpdateDate.getDay() !== 1);
+
+    if (isNewWeek || !storedNumber) {
+      // Generate new random number between 100 and 1000
+      const randomNumber = Math.floor(Math.random() * (1000 - 100 + 1)) + 100;
+
+      // Update the display
+      urgencyElement.textContent = `Join ${randomNumber} families who started this week`;
+
+      // Store the new number and update date
+      localStorage.setItem('sakura-urgency-number', randomNumber.toString());
+      localStorage.setItem('sakura-urgency-last-update', now.toISOString());
+    } else if (storedNumber) {
+      // Use stored number if no update needed
+      urgencyElement.textContent = `Join ${storedNumber} families who started this week`;
     }
   }
 
