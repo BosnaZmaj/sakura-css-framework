@@ -875,11 +875,18 @@
     @apply py-20 bg-white;
   }
 
-  .sakura-testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 32px;
+  .sakura-testimonials-carousel {
+    position: relative;
+    overflow: hidden;
     margin-top: 48px;
+    padding: 0 20px;
+  }
+
+  .sakura-testimonials-track {
+    display: flex;
+    gap: 48px;
+    animation: sakuraCarouselSlide 180s linear infinite;
+    width: calc((400px + 48px) * 26); /* 13 cards * 2 for seamless loop */
   }
 
   .sakura-testimonial-card {
@@ -895,6 +902,8 @@
     border-left: none;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
+    flex: 0 0 400px;
+    min-height: 280px;
   }
 
   /* Gradient accent on the left */
@@ -938,32 +947,29 @@
     font-weight: 400;
     line-height: 1.7;
     position: relative;
-    padding-left: 20px;
   }
 
-  /* Quote styling */
-  .sakura-testimonial-content p::before {
+  /* Quote styling - positioned on separate lines */
+  .sakura-testimonial-content::before {
     content: '"';
-    position: absolute;
-    top: -8px;
-    left: -8px;
-    font-size: 4rem;
-    line-height: 1;
-    font-family: Georgia, serif;
-    color: rgba(91, 139, 245, 0.15);
-    z-index: -1;
-  }
-
-  .sakura-testimonial-content p::after {
-    content: '"';
-    position: absolute;
-    bottom: -24px;
-    right: 8px;
+    display: block;
     font-size: 3rem;
-    line-height: 1;
+    line-height: 0.8;
     font-family: Georgia, serif;
-    color: rgba(139, 92, 246, 0.15);
-    z-index: -1;
+    color: rgba(91, 139, 245, 0.3);
+    margin-bottom: -12px;
+    text-align: left;
+  }
+
+  .sakura-testimonial-content::after {
+    content: '"';
+    display: block;
+    font-size: 2.5rem;
+    line-height: 0.8;
+    font-family: Georgia, serif;
+    color: rgba(91, 139, 245, 0.3);
+    margin-top: 8px;
+    text-align: right;
   }
 
   .sakura-testimonial-author {
@@ -1029,6 +1035,11 @@
     color: #10b981;
   }
 
+  .sakura-testimonial-card:nth-child(2) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(2) .sakura-testimonial-content::after {
+    color: rgba(16, 185, 129, 0.3);
+  }
+
   .sakura-testimonial-card:nth-child(3) {
     background: linear-gradient(135deg,
       rgba(245, 158, 11, 0.02) 0%,
@@ -1050,15 +1061,660 @@
     color: #f59e0b;
   }
 
+  .sakura-testimonial-card:nth-child(3) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(3) .sakura-testimonial-content::after {
+    color: rgba(245, 158, 11, 0.3);
+  }
+
+  /* Card 4 - Rose/Pink theme */
+  .sakura-testimonial-card:nth-child(4) {
+    background: linear-gradient(135deg,
+      rgba(244, 114, 182, 0.02) 0%,
+      rgba(236, 72, 153, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(244, 114, 182, 0.2);
+    border-right: 2px solid rgba(244, 114, 182, 0.2);
+    border-bottom: 2px solid rgba(244, 114, 182, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(4)::before {
+    background: linear-gradient(180deg, #f472b6 0%, #ec4899 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(4) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(244, 114, 182, 0.1), rgba(236, 72, 153, 0.1));
+    border-color: rgba(244, 114, 182, 0.2);
+    color: #f472b6;
+  }
+
+  .sakura-testimonial-card:nth-child(4) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(4) .sakura-testimonial-content::after {
+    color: rgba(244, 114, 182, 0.3);
+  }
+
+  /* Card 5 - Teal theme */
+  .sakura-testimonial-card:nth-child(5) {
+    background: linear-gradient(135deg,
+      rgba(20, 184, 166, 0.02) 0%,
+      rgba(13, 148, 136, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(20, 184, 166, 0.2);
+    border-right: 2px solid rgba(20, 184, 166, 0.2);
+    border-bottom: 2px solid rgba(20, 184, 166, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(5)::before {
+    background: linear-gradient(180deg, #14b8a6 0%, #0d9488 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(5) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.1), rgba(13, 148, 136, 0.1));
+    border-color: rgba(20, 184, 166, 0.2);
+    color: #14b8a6;
+  }
+
+  .sakura-testimonial-card:nth-child(5) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(5) .sakura-testimonial-content::after {
+    color: rgba(20, 184, 166, 0.3);
+  }
+
+  /* Card 6 - Red theme */
+  .sakura-testimonial-card:nth-child(6) {
+    background: linear-gradient(135deg,
+      rgba(239, 68, 68, 0.02) 0%,
+      rgba(220, 38, 38, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(239, 68, 68, 0.2);
+    border-right: 2px solid rgba(239, 68, 68, 0.2);
+    border-bottom: 2px solid rgba(239, 68, 68, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(6)::before {
+    background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(6) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+    border-color: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+  }
+
+  .sakura-testimonial-card:nth-child(6) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(6) .sakura-testimonial-content::after {
+    color: rgba(239, 68, 68, 0.3);
+  }
+
+  /* Card 7 - Indigo theme */
+  .sakura-testimonial-card:nth-child(7) {
+    background: linear-gradient(135deg,
+      rgba(99, 102, 241, 0.02) 0%,
+      rgba(79, 70, 229, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(99, 102, 241, 0.2);
+    border-right: 2px solid rgba(99, 102, 241, 0.2);
+    border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(7)::before {
+    background: linear-gradient(180deg, #6366f1 0%, #4f46e5 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(7) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(79, 70, 229, 0.1));
+    border-color: rgba(99, 102, 241, 0.2);
+    color: #6366f1;
+  }
+
+  .sakura-testimonial-card:nth-child(7) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(7) .sakura-testimonial-content::after {
+    color: rgba(99, 102, 241, 0.3);
+  }
+
+  /* Card 8 - Cyan theme */
+  .sakura-testimonial-card:nth-child(8) {
+    background: linear-gradient(135deg,
+      rgba(6, 182, 212, 0.02) 0%,
+      rgba(8, 145, 178, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(6, 182, 212, 0.2);
+    border-right: 2px solid rgba(6, 182, 212, 0.2);
+    border-bottom: 2px solid rgba(6, 182, 212, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(8)::before {
+    background: linear-gradient(180deg, #06b6d4 0%, #0891b2 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(8) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(8, 145, 178, 0.1));
+    border-color: rgba(6, 182, 212, 0.2);
+    color: #06b6d4;
+  }
+
+  .sakura-testimonial-card:nth-child(8) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(8) .sakura-testimonial-content::after {
+    color: rgba(6, 182, 212, 0.3);
+  }
+
+  /* Card 9 - Orange theme */
+  .sakura-testimonial-card:nth-child(9) {
+    background: linear-gradient(135deg,
+      rgba(249, 115, 22, 0.02) 0%,
+      rgba(234, 88, 12, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(249, 115, 22, 0.2);
+    border-right: 2px solid rgba(249, 115, 22, 0.2);
+    border-bottom: 2px solid rgba(249, 115, 22, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(9)::before {
+    background: linear-gradient(180deg, #f97316 0%, #ea580c 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(9) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(234, 88, 12, 0.1));
+    border-color: rgba(249, 115, 22, 0.2);
+    color: #f97316;
+  }
+
+  .sakura-testimonial-card:nth-child(9) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(9) .sakura-testimonial-content::after {
+    color: rgba(249, 115, 22, 0.3);
+  }
+
+  /* Card 10 - Lime theme */
+  .sakura-testimonial-card:nth-child(10) {
+    background: linear-gradient(135deg,
+      rgba(132, 204, 22, 0.02) 0%,
+      rgba(101, 163, 13, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(132, 204, 22, 0.2);
+    border-right: 2px solid rgba(132, 204, 22, 0.2);
+    border-bottom: 2px solid rgba(132, 204, 22, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(10)::before {
+    background: linear-gradient(180deg, #84cc16 0%, #65a30d 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(10) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(132, 204, 22, 0.1), rgba(101, 163, 13, 0.1));
+    border-color: rgba(132, 204, 22, 0.2);
+    color: #84cc16;
+  }
+
+  .sakura-testimonial-card:nth-child(10) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(10) .sakura-testimonial-content::after {
+    color: rgba(132, 204, 22, 0.3);
+  }
+
+  /* Card 11 - Purple theme */
+  .sakura-testimonial-card:nth-child(11) {
+    background: linear-gradient(135deg,
+      rgba(168, 85, 247, 0.02) 0%,
+      rgba(147, 51, 234, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(168, 85, 247, 0.2);
+    border-right: 2px solid rgba(168, 85, 247, 0.2);
+    border-bottom: 2px solid rgba(168, 85, 247, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(11)::before {
+    background: linear-gradient(180deg, #a855f7 0%, #9333ea 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(11) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(147, 51, 234, 0.1));
+    border-color: rgba(168, 85, 247, 0.2);
+    color: #a855f7;
+  }
+
+  .sakura-testimonial-card:nth-child(11) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(11) .sakura-testimonial-content::after {
+    color: rgba(168, 85, 247, 0.3);
+  }
+
+  /* Card 12 - Slate theme */
+  .sakura-testimonial-card:nth-child(12) {
+    background: linear-gradient(135deg,
+      rgba(100, 116, 139, 0.02) 0%,
+      rgba(71, 85, 105, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(100, 116, 139, 0.2);
+    border-right: 2px solid rgba(100, 116, 139, 0.2);
+    border-bottom: 2px solid rgba(100, 116, 139, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(12)::before {
+    background: linear-gradient(180deg, #64748b 0%, #475569 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(12) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(100, 116, 139, 0.1), rgba(71, 85, 105, 0.1));
+    border-color: rgba(100, 116, 139, 0.2);
+    color: #64748b;
+  }
+
+  .sakura-testimonial-card:nth-child(12) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(12) .sakura-testimonial-content::after {
+    color: rgba(100, 116, 139, 0.3);
+  }
+
+  /* Card 13 - Emerald theme */
+  .sakura-testimonial-card:nth-child(13) {
+    background: linear-gradient(135deg,
+      rgba(52, 211, 153, 0.02) 0%,
+      rgba(16, 185, 129, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(52, 211, 153, 0.2);
+    border-right: 2px solid rgba(52, 211, 153, 0.2);
+    border-bottom: 2px solid rgba(52, 211, 153, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(13)::before {
+    background: linear-gradient(180deg, #34d399 0%, #10b981 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(13) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(52, 211, 153, 0.1), rgba(16, 185, 129, 0.1));
+    border-color: rgba(52, 211, 153, 0.2);
+    color: #34d399;
+  }
+
+  .sakura-testimonial-card:nth-child(13) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(13) .sakura-testimonial-content::after {
+    color: rgba(52, 211, 153, 0.3);
+  }
+
+  /* Cards 14-26 - Unique colors for duplicated testimonials */
+
+  /* Card 14 - Violet theme */
+  .sakura-testimonial-card:nth-child(14) {
+    background: linear-gradient(135deg,
+      rgba(139, 92, 246, 0.02) 0%,
+      rgba(124, 58, 237, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(139, 92, 246, 0.2);
+    border-right: 2px solid rgba(139, 92, 246, 0.2);
+    border-bottom: 2px solid rgba(139, 92, 246, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(14)::before {
+    background: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(14) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.1));
+    border-color: rgba(139, 92, 246, 0.2);
+    color: #8b5cf6;
+  }
+
+  .sakura-testimonial-card:nth-child(14) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(14) .sakura-testimonial-content::after {
+    color: rgba(139, 92, 246, 0.3);
+  }
+
+  /* Card 15 - Fuchsia theme */
+  .sakura-testimonial-card:nth-child(15) {
+    background: linear-gradient(135deg,
+      rgba(217, 70, 239, 0.02) 0%,
+      rgba(192, 38, 211, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(217, 70, 239, 0.2);
+    border-right: 2px solid rgba(217, 70, 239, 0.2);
+    border-bottom: 2px solid rgba(217, 70, 239, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(15)::before {
+    background: linear-gradient(180deg, #d946ef 0%, #c026d3 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(15) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(217, 70, 239, 0.1), rgba(192, 38, 211, 0.1));
+    border-color: rgba(217, 70, 239, 0.2);
+    color: #d946ef;
+  }
+
+  .sakura-testimonial-card:nth-child(15) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(15) .sakura-testimonial-content::after {
+    color: rgba(217, 70, 239, 0.3);
+  }
+
+  /* Card 16 - Sky theme */
+  .sakura-testimonial-card:nth-child(16) {
+    background: linear-gradient(135deg,
+      rgba(14, 165, 233, 0.02) 0%,
+      rgba(2, 132, 199, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(14, 165, 233, 0.2);
+    border-right: 2px solid rgba(14, 165, 233, 0.2);
+    border-bottom: 2px solid rgba(14, 165, 233, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(16)::before {
+    background: linear-gradient(180deg, #0ea5e9 0%, #0284c7 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(16) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(2, 132, 199, 0.1));
+    border-color: rgba(14, 165, 233, 0.2);
+    color: #0ea5e9;
+  }
+
+  .sakura-testimonial-card:nth-child(16) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(16) .sakura-testimonial-content::after {
+    color: rgba(14, 165, 233, 0.3);
+  }
+
+  /* Card 17 - Yellow theme */
+  .sakura-testimonial-card:nth-child(17) {
+    background: linear-gradient(135deg,
+      rgba(234, 179, 8, 0.02) 0%,
+      rgba(202, 138, 4, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(234, 179, 8, 0.2);
+    border-right: 2px solid rgba(234, 179, 8, 0.2);
+    border-bottom: 2px solid rgba(234, 179, 8, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(17)::before {
+    background: linear-gradient(180deg, #eab308 0%, #ca8a04 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(17) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.1), rgba(202, 138, 4, 0.1));
+    border-color: rgba(234, 179, 8, 0.2);
+    color: #eab308;
+  }
+
+  .sakura-testimonial-card:nth-child(17) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(17) .sakura-testimonial-content::after {
+    color: rgba(234, 179, 8, 0.3);
+  }
+
+  /* Card 18 - Stone theme */
+  .sakura-testimonial-card:nth-child(18) {
+    background: linear-gradient(135deg,
+      rgba(120, 113, 108, 0.02) 0%,
+      rgba(87, 83, 78, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(120, 113, 108, 0.2);
+    border-right: 2px solid rgba(120, 113, 108, 0.2);
+    border-bottom: 2px solid rgba(120, 113, 108, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(18)::before {
+    background: linear-gradient(180deg, #78716c 0%, #57534e 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(18) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(120, 113, 108, 0.1), rgba(87, 83, 78, 0.1));
+    border-color: rgba(120, 113, 108, 0.2);
+    color: #78716c;
+  }
+
+  .sakura-testimonial-card:nth-child(18) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(18) .sakura-testimonial-content::after {
+    color: rgba(120, 113, 108, 0.3);
+  }
+
+  /* Card 19 - Neutral theme */
+  .sakura-testimonial-card:nth-child(19) {
+    background: linear-gradient(135deg,
+      rgba(115, 115, 115, 0.02) 0%,
+      rgba(82, 82, 82, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(115, 115, 115, 0.2);
+    border-right: 2px solid rgba(115, 115, 115, 0.2);
+    border-bottom: 2px solid rgba(115, 115, 115, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(19)::before {
+    background: linear-gradient(180deg, #737373 0%, #525252 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(19) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(115, 115, 115, 0.1), rgba(82, 82, 82, 0.1));
+    border-color: rgba(115, 115, 115, 0.2);
+    color: #737373;
+  }
+
+  .sakura-testimonial-card:nth-child(19) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(19) .sakura-testimonial-content::after {
+    color: rgba(115, 115, 115, 0.3);
+  }
+
+  /* Card 20 - Zinc theme */
+  .sakura-testimonial-card:nth-child(20) {
+    background: linear-gradient(135deg,
+      rgba(113, 113, 122, 0.02) 0%,
+      rgba(82, 82, 91, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(113, 113, 122, 0.2);
+    border-right: 2px solid rgba(113, 113, 122, 0.2);
+    border-bottom: 2px solid rgba(113, 113, 122, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(20)::before {
+    background: linear-gradient(180deg, #71717a 0%, #52525b 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(20) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(113, 113, 122, 0.1), rgba(82, 82, 91, 0.1));
+    border-color: rgba(113, 113, 122, 0.2);
+    color: #71717a;
+  }
+
+  .sakura-testimonial-card:nth-child(20) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(20) .sakura-testimonial-content::after {
+    color: rgba(113, 113, 122, 0.3);
+  }
+
+  /* Card 21 - Gray theme */
+  .sakura-testimonial-card:nth-child(21) {
+    background: linear-gradient(135deg,
+      rgba(107, 114, 128, 0.02) 0%,
+      rgba(75, 85, 99, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(107, 114, 128, 0.2);
+    border-right: 2px solid rgba(107, 114, 128, 0.2);
+    border-bottom: 2px solid rgba(107, 114, 128, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(21)::before {
+    background: linear-gradient(180deg, #6b7280 0%, #4b5563 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(21) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(107, 114, 128, 0.1), rgba(75, 85, 99, 0.1));
+    border-color: rgba(107, 114, 128, 0.2);
+    color: #6b7280;
+  }
+
+  .sakura-testimonial-card:nth-child(21) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(21) .sakura-testimonial-content::after {
+    color: rgba(107, 114, 128, 0.3);
+  }
+
+  /* Card 22 - Blueish Gray theme */
+  .sakura-testimonial-card:nth-child(22) {
+    background: linear-gradient(135deg,
+      rgba(148, 163, 184, 0.02) 0%,
+      rgba(100, 116, 139, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(148, 163, 184, 0.2);
+    border-right: 2px solid rgba(148, 163, 184, 0.2);
+    border-bottom: 2px solid rgba(148, 163, 184, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(22)::before {
+    background: linear-gradient(180deg, #94a3b8 0%, #64748b 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(22) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(148, 163, 184, 0.1), rgba(100, 116, 139, 0.1));
+    border-color: rgba(148, 163, 184, 0.2);
+    color: #94a3b8;
+  }
+
+  .sakura-testimonial-card:nth-child(22) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(22) .sakura-testimonial-content::after {
+    color: rgba(148, 163, 184, 0.3);
+  }
+
+  /* Card 23 - Warm Gray theme */
+  .sakura-testimonial-card:nth-child(23) {
+    background: linear-gradient(135deg,
+      rgba(168, 162, 158, 0.02) 0%,
+      rgba(120, 113, 108, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(168, 162, 158, 0.2);
+    border-right: 2px solid rgba(168, 162, 158, 0.2);
+    border-bottom: 2px solid rgba(168, 162, 158, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(23)::before {
+    background: linear-gradient(180deg, #a8a29e 0%, #78716c 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(23) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(168, 162, 158, 0.1), rgba(120, 113, 108, 0.1));
+    border-color: rgba(168, 162, 158, 0.2);
+    color: #a8a29e;
+  }
+
+  .sakura-testimonial-card:nth-child(23) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(23) .sakura-testimonial-content::after {
+    color: rgba(168, 162, 158, 0.3);
+  }
+
+  /* Card 24 - Cool Gray theme */
+  .sakura-testimonial-card:nth-child(24) {
+    background: linear-gradient(135deg,
+      rgba(156, 163, 175, 0.02) 0%,
+      rgba(107, 114, 128, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(156, 163, 175, 0.2);
+    border-right: 2px solid rgba(156, 163, 175, 0.2);
+    border-bottom: 2px solid rgba(156, 163, 175, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(24)::before {
+    background: linear-gradient(180deg, #9ca3af 0%, #6b7280 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(24) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(156, 163, 175, 0.1), rgba(107, 114, 128, 0.1));
+    border-color: rgba(156, 163, 175, 0.2);
+    color: #9ca3af;
+  }
+
+  .sakura-testimonial-card:nth-child(24) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(24) .sakura-testimonial-content::after {
+    color: rgba(156, 163, 175, 0.3);
+  }
+
+  /* Card 25 - Light Blue theme */
+  .sakura-testimonial-card:nth-child(25) {
+    background: linear-gradient(135deg,
+      rgba(56, 189, 248, 0.02) 0%,
+      rgba(14, 165, 233, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(56, 189, 248, 0.2);
+    border-right: 2px solid rgba(56, 189, 248, 0.2);
+    border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(25)::before {
+    background: linear-gradient(180deg, #38bdf8 0%, #0ea5e9 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(25) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(14, 165, 233, 0.1));
+    border-color: rgba(56, 189, 248, 0.2);
+    color: #38bdf8;
+  }
+
+  .sakura-testimonial-card:nth-child(25) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(25) .sakura-testimonial-content::after {
+    color: rgba(56, 189, 248, 0.3);
+  }
+
+  /* Card 26 - Dark Emerald theme */
+  .sakura-testimonial-card:nth-child(26) {
+    background: linear-gradient(135deg,
+      rgba(5, 150, 105, 0.02) 0%,
+      rgba(4, 120, 87, 0.02) 50%,
+      rgba(255, 255, 255, 0.98) 100%);
+    border-top: 2px solid rgba(5, 150, 105, 0.2);
+    border-right: 2px solid rgba(5, 150, 105, 0.2);
+    border-bottom: 2px solid rgba(5, 150, 105, 0.2);
+    border-left: none;
+  }
+
+  .sakura-testimonial-card:nth-child(26)::before {
+    background: linear-gradient(180deg, #059669 0%, #047857 100%);
+  }
+
+  .sakura-testimonial-card:nth-child(26) .sakura-testimonial-result {
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(4, 120, 87, 0.1));
+    border-color: rgba(5, 150, 105, 0.2);
+    color: #059669;
+  }
+
+  .sakura-testimonial-card:nth-child(26) .sakura-testimonial-content::before,
+  .sakura-testimonial-card:nth-child(26) .sakura-testimonial-content::after {
+    color: rgba(5, 150, 105, 0.3);
+  }
+
+  /* Carousel animation */
+  @keyframes sakuraCarouselSlide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-1 * (400px + 48px) * 13));
+    }
+  }
+
   /* Mobile responsiveness */
   @media (max-width: 768px) {
-    .sakura-testimonials-grid {
-      grid-template-columns: 1fr;
-      gap: 24px;
+    .sakura-testimonials-carousel {
+      padding: 0 10px;
+    }
+
+    .sakura-testimonials-track {
+      gap: 32px;
+      width: calc((280px + 32px) * 26);
+      animation: sakuraCarouselSlide 180s linear infinite;
     }
 
     .sakura-testimonial-card {
-      padding: 24px;
+      padding: 20px;
+      flex: 0 0 280px;
+      min-height: 300px;
     }
 
     .sakura-testimonial-content p {
@@ -1069,6 +1725,15 @@
     .sakura-testimonial-author {
       padding: 16px;
       margin: -4px -4px -4px -4px;
+    }
+
+    @keyframes sakuraCarouselSlide {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-1 * (280px + 32px) * 13));
+      }
     }
   }
 
