@@ -564,6 +564,9 @@
     opacity: 0;
     transform: translateY(8px);
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
   }
 
   .sakura-feature-card:hover .sakura-feature-learn-more {
@@ -1022,4 +1025,769 @@
       margin-top: 16px;
     }
   }
+
+  /* Feature Explanation Modal System */
+  .sakura-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+
+  .sakura-modal-overlay.sakura-modal--active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .sakura-modal-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(40px);
+    border-radius: 24px;
+    max-width: 800px;
+    max-height: 90vh;
+    width: 90%;
+    overflow-y: auto;
+    box-shadow:
+      0 25px 100px -20px rgba(0, 0, 0, 0.4),
+      0 15px 60px -15px rgba(0, 0, 0, 0.25),
+      0 0 0 1px rgba(255, 255, 255, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transform: scale(0.9) translateY(30px);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .sakura-modal-overlay.sakura-modal--active .sakura-modal-container {
+    transform: scale(1) translateY(0);
+  }
+
+  .sakura-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 32px;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+    background: linear-gradient(135deg, rgba(91, 139, 245, 0.08) 0%, rgba(139, 92, 246, 0.04) 100%);
+    border-radius: 24px 24px 0 0;
+  }
+
+  .sakura-modal-header h3 {
+    @apply text-2xl font-bold text-sakura-gray-900 mb-0 font-heading;
+    color: #1e2a3b;
+  }
+
+  .sakura-modal-close {
+    background: rgba(75, 85, 99, 0.1);
+    border: none;
+    color: #6b7280;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+  }
+
+  .sakura-modal-close:hover {
+    background: rgba(75, 85, 99, 0.2);
+    color: #374151;
+    transform: scale(1.05);
+  }
+
+  .sakura-modal-body {
+    padding: 0;
+  }
+
+  /* Hero Visual Section */
+  .sakura-feature-hero {
+    padding: 40px 32px;
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
+    text-align: center;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.3);
+  }
+
+  .sakura-feature-visual {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow:
+      0 8px 32px -8px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sakura-feature-visual::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(91, 139, 245, 0.05) 0%, transparent 50%, rgba(139, 92, 246, 0.05) 100%);
+    pointer-events: none;
+  }
+
+  .sakura-visual-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Benefits Section */
+  .sakura-feature-benefits {
+    padding: 40px 32px;
+    background: white;
+  }
+
+  .sakura-feature-benefits h4 {
+    @apply text-xl font-semibold text-sakura-gray-900 mb-6 text-center font-heading;
+  }
+
+  .sakura-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+  }
+
+  .sakura-benefit-item {
+    text-align: center;
+    padding: 24px;
+    background: rgba(248, 250, 252, 0.6);
+    border-radius: 16px;
+    border: 1px solid rgba(226, 232, 240, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .sakura-benefit-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.1);
+    background: rgba(248, 250, 252, 0.8);
+  }
+
+  .sakura-benefit-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 16px;
+    background: linear-gradient(135deg, #5B8BF5 0%, #8B5CF6 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+  }
+
+  .sakura-benefit-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+  }
+
+  .sakura-benefit-description {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+
+  /* How It Works Section */
+  .sakura-feature-process {
+    padding: 40px 32px;
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.4) 0%, rgba(255, 255, 255, 0.8) 100%);
+    border-top: 1px solid rgba(226, 232, 240, 0.3);
+  }
+
+  .sakura-feature-process h4 {
+    @apply text-xl font-semibold text-sakura-gray-900 mb-6 text-center font-heading;
+  }
+
+  .sakura-process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 32px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .sakura-process-step {
+    text-align: center;
+    position: relative;
+  }
+
+  .sakura-process-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    right: -16px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid #5B8BF5;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    opacity: 0.6;
+  }
+
+  .sakura-step-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #5B8BF5 0%, #4A7EF4 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 auto 16px;
+    box-shadow: 0 4px 12px -4px rgba(91, 139, 245, 0.4);
+  }
+
+  .sakura-step-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+  }
+
+  .sakura-step-description {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    line-height: 1.4;
+  }
+
+  /* Real User Story Section */
+  .sakura-feature-story {
+    padding: 40px 32px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(5, 150, 105, 0.02) 100%);
+    border-top: 1px solid rgba(226, 232, 240, 0.3);
+  }
+
+  .sakura-story-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .sakura-story-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    box-shadow: 0 8px 20px -8px rgba(16, 185, 129, 0.3);
+  }
+
+  .sakura-story-quote {
+    font-size: 1.125rem;
+    color: #374151;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .sakura-story-quote::before,
+  .sakura-story-quote::after {
+    content: '"';
+    font-size: 2rem;
+    color: #10B981;
+    font-weight: 700;
+  }
+
+  .sakura-story-attribution {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  .sakura-story-results {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+  }
+
+  .sakura-story-metric {
+    display: inline-block;
+    margin: 0 16px;
+    text-align: center;
+  }
+
+  .sakura-story-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #059669;
+  }
+
+  .sakura-story-label {
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* CTA Bridge Section */
+  .sakura-feature-cta {
+    padding: 40px 32px;
+    background: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    border-top: 1px solid rgba(226, 232, 240, 0.3);
+    border-radius: 0 0 24px 24px;
+  }
+
+  .sakura-feature-cta .sakura-btn {
+    font-size: 1rem;
+    padding: 16px 32px;
+    margin-bottom: 12px;
+  }
+
+  .sakura-cta-note {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  /* Mobile Optimizations */
+  @media (max-width: 768px) {
+    .sakura-modal-container {
+      width: 95%;
+      margin: 10px;
+      max-height: 95vh;
+    }
+
+    .sakura-modal-header {
+      padding: 20px 24px;
+    }
+
+    .sakura-modal-header h3 {
+      @apply text-xl;
+    }
+
+    .sakura-feature-hero,
+    .sakura-feature-benefits,
+    .sakura-feature-process,
+    .sakura-feature-story,
+    .sakura-feature-cta {
+      padding: 24px 20px;
+    }
+
+    .sakura-feature-visual {
+      min-height: 150px;
+      padding: 24px;
+    }
+
+    .sakura-benefits-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .sakura-process-steps {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .sakura-process-step:not(:last-child)::after {
+      display: none;
+    }
+
+    .sakura-story-metric {
+      display: block;
+      margin: 8px 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .sakura-modal-container {
+      width: 100%;
+      height: 100%;
+      max-height: 100vh;
+      border-radius: 0;
+    }
+
+    .sakura-modal-header {
+      border-radius: 0;
+    }
+
+    .sakura-feature-cta {
+      border-radius: 0;
+    }
+  }
+
+  /* ===== INTERACTIVE DEMO MODAL ===== */
+
+  /* Demo Modal Specific Styling */
+  .sakura-demo-modal {
+    max-width: 900px;
+    max-height: 90vh;
+  }
+
+  .sakura-demo-modal .sakura-modal-body {
+    max-height: calc(90vh - 80px);
+  }
+
+  /* Demo Setup Form */
+  .sakura-demo-setup {
+    padding: 32px;
+  }
+
+  .sakura-demo-welcome {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .sakura-demo-welcome h4 {
+    @apply text-xl font-semibold text-sakura-gray-900 mb-3 font-heading;
+  }
+
+  .sakura-demo-welcome p {
+    @apply text-base text-sakura-gray-600 max-w-md mx-auto;
+  }
+
+  .sakura-demo-form {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .sakura-form-group {
+    margin-bottom: 20px;
+  }
+
+  .sakura-form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+  }
+
+  .sakura-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .sakura-input-prefix {
+    position: absolute;
+    left: 12px;
+    z-index: 1;
+    font-weight: 600;
+    color: #6b7280;
+  }
+
+  .sakura-input {
+    width: 100%;
+    padding: 12px 16px 12px 32px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background: white;
+  }
+
+  .sakura-input:focus {
+    outline: none;
+    border-color: #5B8BF5;
+    box-shadow: 0 0 0 3px rgba(91, 139, 245, 0.1);
+  }
+
+  .sakura-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* Demo Dashboard */
+  .sakura-demo-dashboard {
+    padding: 24px 32px 32px;
+  }
+
+  .sakura-demo-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+
+  .sakura-demo-step-indicator {
+    text-align: center;
+  }
+
+  .sakura-step-label {
+    @apply text-lg font-semibold text-sakura-gray-800 font-heading;
+  }
+
+  /* Budget Overview */
+  .sakura-demo-overview {
+    margin-bottom: 40px;
+  }
+
+  .sakura-demo-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .sakura-summary-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .sakura-summary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.1);
+  }
+
+  .sakura-summary-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .sakura-summary-card:nth-child(1) .sakura-summary-icon {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  }
+
+  .sakura-summary-card:nth-child(2) .sakura-summary-icon {
+    background: linear-gradient(135deg, #5B8BF5 0%, #4A7EF4 100%);
+  }
+
+  .sakura-summary-card:nth-child(3) .sakura-summary-icon {
+    background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  }
+
+  .sakura-summary-content {
+    flex: 1;
+  }
+
+  .sakura-summary-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 4px;
+  }
+
+  .sakura-summary-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+  }
+
+  /* Envelope Cards */
+  .sakura-demo-envelopes {
+    margin-bottom: 40px;
+  }
+
+  .sakura-demo-envelopes h4 {
+    @apply text-lg font-semibold text-sakura-gray-900 mb-6 font-heading;
+  }
+
+  .sakura-envelopes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .sakura-envelope-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .sakura-envelope-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.1);
+  }
+
+  .sakura-envelope-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .sakura-envelope-category {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 4px;
+  }
+
+  .sakura-envelope-budget {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .sakura-envelope-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .sakura-envelope-progress {
+    margin: 16px 0;
+  }
+
+  .sakura-progress-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: rgba(229, 231, 235, 0.6);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .sakura-progress-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .sakura-envelope-remaining {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .sakura-remaining-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .sakura-remaining-amount {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1f2937;
+  }
+
+  .sakura-envelope-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .sakura-btn--envelope {
+    flex: 1;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+  }
+
+  /* Interactive Elements */
+  .sakura-demo-interactions {
+    margin-bottom: 40px;
+    text-align: center;
+    padding: 24px;
+    background: linear-gradient(135deg, rgba(91, 139, 245, 0.05) 0%, rgba(139, 92, 246, 0.02) 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(91, 139, 245, 0.1);
+  }
+
+  .sakura-demo-section h4 {
+    @apply text-lg font-semibold text-sakura-gray-900 mb-3 font-heading;
+  }
+
+  .sakura-demo-section p {
+    @apply text-base text-sakura-gray-600;
+  }
+
+  /* Demo CTA */
+  .sakura-demo-cta {
+    text-align: center;
+    padding: 32px 24px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+  }
+
+  .sakura-cta-content h4 {
+    @apply text-xl font-semibold text-sakura-gray-900 mb-3 font-heading;
+  }
+
+  .sakura-cta-content p {
+    @apply text-base text-sakura-gray-600 mb-6;
+  }
+
+  /* Mobile Optimizations for Demo */
+  @media (max-width: 768px) {
+    .sakura-demo-modal {
+      max-width: 95%;
+      max-height: 95vh;
+    }
+
+    .sakura-demo-setup,
+    .sakura-demo-dashboard {
+      padding: 20px;
+    }
+
+    .sakura-form-row {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .sakura-demo-summary-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .sakura-envelopes-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .sakura-demo-nav {
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+  }
+
 }

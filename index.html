@@ -112,7 +112,7 @@
                     </div>
                     <h3>Smart Envelopes</h3>
                     <p>Create custom spending categories and watch your money flow with purpose. Never overspend again.</p>
-                    <a href="#" class="sakura-feature-learn-more">Learn More <i class="bi bi-arrow-right"></i></a>
+                    <a href="#" class="sakura-feature-learn-more" data-feature="smart-envelopes">Learn More <i class="bi bi-arrow-right"></i></a>
                 </div>
                 <div class="sakura-feature-card">
                     <div class="sakura-feature-icon">
@@ -120,7 +120,7 @@
                     </div>
                     <h3>Automatic Allocation</h3>
                     <p>Set it once, relax forever. Your income automatically flows into the right envelopes.</p>
-                    <a href="#" class="sakura-feature-learn-more">Learn More <i class="bi bi-arrow-right"></i></a>
+                    <a href="#" class="sakura-feature-learn-more" data-feature="automatic-allocation">Learn More <i class="bi bi-arrow-right"></i></a>
                 </div>
                 <div class="sakura-feature-card">
                     <div class="sakura-feature-icon">
@@ -128,7 +128,7 @@
                     </div>
                     <h3>Visual Insights</h3>
                     <p>Beautiful charts and reports that make your financial picture crystal clear.</p>
-                    <a href="#" class="sakura-feature-learn-more">Learn More <i class="bi bi-arrow-right"></i></a>
+                    <a href="#" class="sakura-feature-learn-more" data-feature="visual-insights">Learn More <i class="bi bi-arrow-right"></i></a>
                 </div>
                 <div class="sakura-feature-card">
                     <div class="sakura-feature-icon">
@@ -136,7 +136,7 @@
                     </div>
                     <h3>Goal Tracking</h3>
                     <p>From emergency funds to dream vacations, watch your goals become reality.</p>
-                    <a href="#" class="sakura-feature-learn-more">Learn More <i class="bi bi-arrow-right"></i></a>
+                    <a href="#" class="sakura-feature-learn-more" data-feature="goal-tracking">Learn More <i class="bi bi-arrow-right"></i></a>
                 </div>
                 <div class="sakura-feature-card">
                     <div class="sakura-feature-icon">
@@ -144,7 +144,7 @@
                     </div>
                     <h3>Bank Sync</h3>
                     <p>Connect your accounts for real-time updates. Your budget stays current automatically.</p>
-                    <a href="#" class="sakura-feature-learn-more">Learn More <i class="bi bi-arrow-right"></i></a>
+                    <a href="#" class="sakura-feature-learn-more" data-feature="bank-sync">Learn More <i class="bi bi-arrow-right"></i></a>
                 </div>
                 <div class="sakura-feature-card">
                     <div class="sakura-feature-icon">
@@ -152,7 +152,7 @@
                     </div>
                     <h3>Smart Alerts</h3>
                     <p>Gentle nudges when you're close to limits. Stay on track without the stress.</p>
-                    <a href="#" class="sakura-feature-learn-more">Learn More <i class="bi bi-arrow-right"></i></a>
+                    <a href="#" class="sakura-feature-learn-more" data-feature="smart-alerts">Learn More <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -210,6 +210,203 @@
             </div>
         </div>
     </footer>
+
+    <!-- Feature Explanation Modal -->
+    <div id="sakura-feature-modal" class="sakura-modal-overlay">
+        <div class="sakura-modal-container sakura-feature-modal">
+            <div class="sakura-modal-header">
+                <h3 id="feature-modal-title">Feature Title</h3>
+                <button class="sakura-modal-close" id="feature-modal-close">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+
+            <div class="sakura-modal-body">
+                <!-- Hero Visual Section -->
+                <div class="sakura-feature-hero">
+                    <div class="sakura-feature-visual" id="feature-visual">
+                        <!-- Dynamic visual content -->
+                    </div>
+                </div>
+
+                <!-- Benefits Section -->
+                <div class="sakura-feature-benefits">
+                    <h4>Why you'll love this feature</h4>
+                    <div class="sakura-benefits-grid" id="feature-benefits">
+                        <!-- Dynamic benefits content -->
+                    </div>
+                </div>
+
+                <!-- How It Works Section -->
+                <div class="sakura-feature-process">
+                    <h4>How it works</h4>
+                    <div class="sakura-process-steps" id="feature-steps">
+                        <!-- Dynamic process steps -->
+                    </div>
+                </div>
+
+                <!-- Real User Story -->
+                <div class="sakura-feature-story">
+                    <div class="sakura-story-content" id="feature-story">
+                        <!-- Dynamic user story -->
+                    </div>
+                </div>
+
+                <!-- CTA Bridge -->
+                <div class="sakura-feature-cta">
+                    <button class="sakura-btn sakura-btn--primary sakura-btn--full" id="try-demo-btn">
+                        <i class="bi bi-play-circle"></i>
+                        See it in action with your budget
+                    </button>
+                    <p class="sakura-cta-note">Try it with your own numbers - no signup required</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Demo Modal -->
+    <div id="sakura-demo-modal" class="sakura-modal-overlay">
+        <div class="sakura-modal-container sakura-demo-modal">
+            <div class="sakura-modal-header">
+                <h3 id="demo-modal-title">Interactive Budget Demo</h3>
+                <button class="sakura-modal-close" id="demo-modal-close">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+
+            <div class="sakura-modal-body">
+                <!-- Demo Setup -->
+                <div class="sakura-demo-setup" id="demo-setup">
+                    <div class="sakura-demo-welcome">
+                        <h4>Let's create your sample budget</h4>
+                        <p>Enter some basic information to see how Sakura works with your numbers</p>
+                    </div>
+
+                    <div class="sakura-demo-form">
+                        <div class="sakura-form-group">
+                            <label for="demo-income">Monthly Income</label>
+                            <div class="sakura-input-wrapper">
+                                <span class="sakura-input-prefix">$</span>
+                                <input type="number" id="demo-income" class="sakura-input" placeholder="5000" value="5000">
+                            </div>
+                        </div>
+
+                        <div class="sakura-form-row">
+                            <div class="sakura-form-group">
+                                <label for="demo-housing">Housing</label>
+                                <div class="sakura-input-wrapper">
+                                    <span class="sakura-input-prefix">$</span>
+                                    <input type="number" id="demo-housing" class="sakura-input" placeholder="1500" value="1500">
+                                </div>
+                            </div>
+                            <div class="sakura-form-group">
+                                <label for="demo-food">Food & Dining</label>
+                                <div class="sakura-input-wrapper">
+                                    <span class="sakura-input-prefix">$</span>
+                                    <input type="number" id="demo-food" class="sakura-input" placeholder="600" value="600">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sakura-form-row">
+                            <div class="sakura-form-group">
+                                <label for="demo-entertainment">Entertainment</label>
+                                <div class="sakura-input-wrapper">
+                                    <span class="sakura-input-prefix">$</span>
+                                    <input type="number" id="demo-entertainment" class="sakura-input" placeholder="300" value="300">
+                                </div>
+                            </div>
+                            <div class="sakura-form-group">
+                                <label for="demo-savings">Savings Goal</label>
+                                <div class="sakura-input-wrapper">
+                                    <span class="sakura-input-prefix">$</span>
+                                    <input type="number" id="demo-savings" class="sakura-input" placeholder="800" value="800">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="sakura-btn sakura-btn--primary sakura-btn--full" id="create-demo-btn">
+                            <i class="bi bi-magic"></i>
+                            Create My Sample Budget
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Demo Dashboard -->
+                <div class="sakura-demo-dashboard" id="demo-dashboard" style="display: none;">
+                    <div class="sakura-demo-nav">
+                        <button class="sakura-btn sakura-btn--outline sakura-btn--sm" id="demo-reset-btn">
+                            <i class="bi bi-arrow-left"></i>
+                            Start Over
+                        </button>
+                        <div class="sakura-demo-step-indicator">
+                            <span class="sakura-step-label">Your Sample Budget</span>
+                        </div>
+                    </div>
+
+                    <!-- Budget Overview -->
+                    <div class="sakura-demo-overview">
+                        <div class="sakura-demo-summary-grid">
+                            <div class="sakura-summary-card">
+                                <div class="sakura-summary-icon">
+                                    <i class="bi bi-currency-dollar"></i>
+                                </div>
+                                <div class="sakura-summary-content">
+                                    <div class="sakura-summary-label">Monthly Income</div>
+                                    <div class="sakura-summary-value" id="demo-income-display">$5,000</div>
+                                </div>
+                            </div>
+                            <div class="sakura-summary-card">
+                                <div class="sakura-summary-icon">
+                                    <i class="bi bi-wallet"></i>
+                                </div>
+                                <div class="sakura-summary-content">
+                                    <div class="sakura-summary-label">Total Budgeted</div>
+                                    <div class="sakura-summary-value" id="demo-budgeted-display">$3,200</div>
+                                </div>
+                            </div>
+                            <div class="sakura-summary-card">
+                                <div class="sakura-summary-icon">
+                                    <i class="bi bi-piggy-bank"></i>
+                                </div>
+                                <div class="sakura-summary-content">
+                                    <div class="sakura-summary-label">Available to Save</div>
+                                    <div class="sakura-summary-value" id="demo-available-display">$1,800</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Envelope Cards -->
+                    <div class="sakura-demo-envelopes">
+                        <h4>Your Budget Envelopes</h4>
+                        <div class="sakura-envelopes-grid" id="demo-envelopes-grid">
+                            <!-- Dynamic envelope cards -->
+                        </div>
+                    </div>
+
+                    <!-- Interactive Elements -->
+                    <div class="sakura-demo-interactions">
+                        <div class="sakura-demo-section">
+                            <h4>Try spending from an envelope</h4>
+                            <p>Click the "Spend" button on any envelope to see how your budget updates in real-time</p>
+                        </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <div class="sakura-demo-cta">
+                        <div class="sakura-cta-content">
+                            <h4>Ready to manage your real budget?</h4>
+                            <p>This is just a preview. Create your free account to start budgeting with your actual finances.</p>
+                            <a href="signup.html" class="sakura-btn sakura-btn--primary sakura-btn--lg">
+                                Get Started Free
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="src/sakura.js"></script>
 </body>
