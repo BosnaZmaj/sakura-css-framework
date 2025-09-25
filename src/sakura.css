@@ -23,7 +23,7 @@
   }
 
   .sakura-navbar-container {
-    @apply flex items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply flex items-center justify-between max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16;
   }
 
   .sakura-navbar-brand {
@@ -103,25 +103,44 @@
   }
 
   .sakura-btn--primary {
-    @apply bg-sakura-primary text-white border-sakura-primary hover:bg-sakura-primary-light;
+    @apply bg-sakura-primary text-white border-sakura-primary;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+  }
+
+  .sakura-btn--primary:hover {
+    @apply bg-sakura-primary-light;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(30, 42, 59, 0.3);
   }
 
   .sakura-btn--outline {
-    @apply bg-transparent text-sakura-primary border-sakura-primary hover:bg-sakura-primary hover:text-white;
+    @apply bg-transparent text-sakura-primary border-sakura-primary;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+  }
+
+  .sakura-btn--outline:hover {
+    @apply bg-sakura-primary text-white;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(91, 139, 245, 0.3);
   }
 
   .sakura-btn--lg {
-    @apply px-6 py-3 text-base;
+    @apply px-8 py-4 text-lg font-semibold;
   }
 
   /* Sakura Container */
   .sakura-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16;
   }
 
   /* Sakura Hero Section */
   .sakura-hero {
-    @apply py-24 bg-gradient-to-br from-white to-sakura-gray-50 overflow-hidden relative;
+    @apply pt-48 pb-32 bg-gradient-to-br from-white to-sakura-gray-50 overflow-hidden relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
   }
 
   .sakura-hero::before {
@@ -150,44 +169,85 @@
     66% { transform: translate(-50px, 100px) scale(0.95); }
   }
 
+  @keyframes sakuraFadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes sakuraFadeInRight {
+    0% {
+      opacity: 0;
+      transform: perspective(1200px) rotateY(-15deg) rotateX(10deg) translateX(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: perspective(1200px) rotateY(-8deg) rotateX(6deg) translateX(0);
+    }
+  }
+
   .sakura-hero-container {
-    @apply grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10;
+    @apply grid grid-cols-1 lg:grid-cols-7 gap-12 items-center relative z-10;
+  }
+
+  .sakura-hero-content {
+    @apply lg:col-span-3;
+  }
+
+  .sakura-hero-visual {
+    @apply lg:col-span-4;
   }
 
   .sakura-hero-title {
-    @apply text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-sakura-gray-900 font-heading;
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold text-sakura-gray-900 font-heading mb-6;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    animation: sakuraFadeInUp 0.8s ease-out 0.2s both;
   }
 
   .sakura-hero-subtitle {
-    @apply text-lg sm:text-xl text-sakura-gray-600 mb-8 leading-relaxed;
+    @apply text-lg sm:text-xl lg:text-2xl text-sakura-gray-600 mb-8;
+    line-height: 1.6;
+    font-weight: 400;
+    max-width: 600px;
+    animation: sakuraFadeInUp 0.8s ease-out 0.4s both;
   }
 
   .sakura-hero-actions {
-    @apply flex flex-col sm:flex-row gap-4 mb-12;
+    @apply flex flex-col sm:flex-row gap-6 mb-16;
+    animation: sakuraFadeInUp 0.8s ease-out 0.6s both;
   }
 
   .sakura-hero-stats {
-    @apply flex flex-col sm:flex-row gap-8;
+    @apply flex flex-col sm:flex-row gap-12 lg:gap-16;
+    animation: sakuraFadeInUp 0.8s ease-out 0.8s both;
   }
 
   .sakura-stat {
-    @apply flex flex-col gap-1;
+    @apply flex flex-col gap-2;
   }
 
   .sakura-stat-number {
-    @apply text-2xl font-bold text-sakura-primary font-heading;
+    @apply text-3xl sm:text-4xl font-bold text-sakura-primary font-heading;
+    letter-spacing: -0.01em;
   }
 
   .sakura-stat-label {
-    @apply text-sm text-sakura-gray-500;
+    @apply text-base text-sakura-gray-500 font-medium;
+    letter-spacing: 0.01em;
   }
 
   /* Sakura Dashboard Preview */
   .sakura-dashboard-preview {
-    @apply bg-white/95 rounded-5xl shadow-2xl overflow-hidden relative border border-sakura-gray-200/80;
-    backdrop-filter: blur(10px);
+    @apply rounded-5xl shadow-2xl overflow-hidden relative;
     transform: perspective(1200px) rotateY(-8deg) rotateX(6deg);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: sakuraFadeInRight 1s ease-out 0.4s both;
     box-shadow:
       0 30px 40px -15px rgb(0 0 0 / 0.1),
       0 12px 20px -8px rgb(0 0 0 / 0.06),
@@ -195,66 +255,26 @@
   }
 
   .sakura-dashboard-preview:hover {
-    transform: perspective(1200px) rotateY(-4deg) rotateX(3deg);
+    transform: perspective(1200px) rotateY(-4deg) rotateX(3deg) scale(1.02);
   }
 
-  .sakura-preview-header {
-    @apply p-4 bg-sakura-gray-50/80 border-b border-sakura-gray-200/60;
+  .sakura-dashboard-screenshot {
+    @apply w-full h-auto;
+    max-width: 1200px;
+    border-radius: 2rem;
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.15));
+    mask:
+      radial-gradient(ellipse 100% 100% at 50% 50%, black 60%, transparent 100%),
+      linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-composite: intersect;
+    -webkit-mask:
+      radial-gradient(ellipse 100% 100% at 50% 50%, black 60%, transparent 100%),
+      linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-composite: source-in;
   }
 
-  .sakura-preview-dots {
-    @apply flex gap-2;
-  }
-
-  .sakura-preview-dots span {
-    @apply w-3 h-3 rounded-full bg-sakura-gray-300;
-  }
-
-  .sakura-preview-dots span:first-child {
-    @apply bg-red-400;
-  }
-
-  .sakura-preview-dots span:nth-child(2) {
-    @apply bg-yellow-400;
-  }
-
-  .sakura-preview-dots span:last-child {
-    @apply bg-green-400;
-  }
-
-  .sakura-preview-content {
-    @apply p-6 space-y-4;
-  }
-
-  .sakura-preview-envelope {
-    @apply flex items-center justify-between p-4 bg-sakura-gray-50/60 rounded-2xl;
-  }
-
-  .sakura-envelope-name {
-    @apply font-medium text-sakura-gray-900;
-  }
-
-  .sakura-envelope-amount {
-    @apply font-semibold text-sakura-primary;
-  }
-
-  .sakura-envelope-progress {
-    @apply w-full bg-sakura-gray-200 rounded-full h-2 mt-2;
-  }
-
-  .sakura-progress-bar {
-    @apply bg-sakura-secondary rounded-full h-2 transition-all duration-300;
-  }
-
-  .sakura-preview-chart {
-    @apply w-16 h-16 rounded-full mx-auto mt-4 relative;
-    background: conic-gradient(
-      from 0deg,
-      #5b8bf5 0deg 144deg,
-      #10b981 144deg 252deg,
-      #f59e0b 252deg 360deg
-    );
-  }
 
   /* Sakura Features Section */
   .sakura-features {
@@ -377,7 +397,11 @@
 
   /* Utility Classes */
   .sakura-text-primary {
-    @apply text-sakura-primary;
+    background: linear-gradient(135deg, #1e2a3b, #5b8bf5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
   }
 
   /* Responsive adjustments */
