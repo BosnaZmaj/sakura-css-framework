@@ -19,8 +19,13 @@
     box-sizing: border-box;
   }
 
-  /* Force all elements to be transparent except specific components */
-  section, div, main, article, header, aside {
+  /* Force all elements to be transparent except sakura components */
+  section:not([class*="sakura"]),
+  div:not([class*="sakura"]),
+  main:not([class*="sakura"]),
+  article:not([class*="sakura"]),
+  header:not([class*="sakura"]),
+  aside:not([class*="sakura"]) {
     background: transparent !important;
   }
 
@@ -396,39 +401,302 @@
 
   .sakura-feature-card {
     @apply p-10 border border-sakura-gray-200/60 rounded-5xl text-center relative overflow-hidden;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(20px);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 8px -2px rgb(0 0 0 / 0.04), 0 2px 4px -1px rgb(0 0 0 / 0.03);
+  }
+
+  .sakura-feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #5b8bf5, #8b5cf6, #10b981);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .sakura-feature-card::after {
     content: '';
-    @apply absolute w-32 h-32 rounded-full opacity-10;
-    top: -50%;
-    right: -50%;
-    background: linear-gradient(135deg, #5b8bf5, #10b981);
-    filter: blur(20px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(91, 139, 245, 0.12) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .sakura-feature-card:hover {
-    @apply -translate-y-2 shadow-elevated;
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px -5px rgb(0 0 0 / 0.06), 0 4px 8px -2px rgb(0 0 0 / 0.04);
+    border-color: rgba(91, 139, 245, 0.2);
+  }
+
+  .sakura-feature-card:hover::before {
+    transform: scaleX(1);
   }
 
   .sakura-feature-card:hover::after {
-    @apply opacity-20 scale-110;
+    opacity: 1;
   }
 
   .sakura-feature-icon {
-    @apply w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-sakura-secondary to-sakura-secondary-light rounded-3xl flex items-center justify-center text-white text-3xl;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px -2px rgba(59, 130, 246, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+  }
+
+  .sakura-feature-icon::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), transparent);
+    border-radius: 2rem;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-feature-card:hover .sakura-feature-icon {
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow: 0 8px 20px -4px rgba(91, 139, 245, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .sakura-feature-card:hover .sakura-feature-icon::before {
+    opacity: 0.5;
+  }
+
+  .sakura-feature-icon {
+    color: white;
+    font-size: 40px;
+  }
+
+  .sakura-feature-icon i,
+  .sakura-feature-icon svg {
+    line-height: 1;
+  }
+
+  /* Different icon colors for variety - darker gradients for better contrast */
+  .sakura-feature-card:nth-child(1) .sakura-feature-icon {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    box-shadow: 0 4px 12px -2px rgba(59, 130, 246, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .sakura-feature-card:nth-child(1):hover .sakura-feature-icon {
+    box-shadow: 0 8px 20px -4px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .sakura-feature-card:nth-child(2) .sakura-feature-icon {
+    background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+    box-shadow: 0 4px 12px -2px rgba(124, 58, 237, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .sakura-feature-card:nth-child(2):hover .sakura-feature-icon {
+    box-shadow: 0 8px 20px -4px rgba(124, 58, 237, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .sakura-feature-card:nth-child(3) .sakura-feature-icon {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    box-shadow: 0 4px 12px -2px rgba(5, 150, 105, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .sakura-feature-card:nth-child(3):hover .sakura-feature-icon {
+    box-shadow: 0 8px 20px -4px rgba(5, 150, 105, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .sakura-feature-card:nth-child(4) .sakura-feature-icon {
+    background: linear-gradient(135deg, #d97706 0%, #92400e 100%);
+    box-shadow: 0 4px 12px -2px rgba(217, 119, 6, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .sakura-feature-card:nth-child(4):hover .sakura-feature-icon {
+    box-shadow: 0 8px 20px -4px rgba(217, 119, 6, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .sakura-feature-card:nth-child(5) .sakura-feature-icon {
+    background: linear-gradient(135deg, #db2777 0%, #be185d 100%);
+    box-shadow: 0 4px 12px -2px rgba(219, 39, 119, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .sakura-feature-card:nth-child(5):hover .sakura-feature-icon {
+    box-shadow: 0 8px 20px -4px rgba(219, 39, 119, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .sakura-feature-card:nth-child(6) .sakura-feature-icon {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    box-shadow: 0 4px 12px -2px rgba(31, 41, 55, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .sakura-feature-card:nth-child(6):hover .sakura-feature-icon {
+    box-shadow: 0 8px 20px -4px rgba(31, 41, 55, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  /* Clean CSS-based icons */
+  .icon-envelope {
+    display: inline-block;
+    width: 36px;
+    height: 24px;
+    border: 3px solid white;
+    border-radius: 4px;
+    position: relative;
+  }
+
+  .icon-envelope::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    height: 0;
+    border-left: 21px solid transparent;
+    border-right: 21px solid transparent;
+    border-top: 15px solid white;
+  }
+
+  .icon-magic {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    position: relative;
+  }
+
+  .icon-magic::before,
+  .icon-magic::after {
+    content: '';
+    position: absolute;
+    background: white;
+    border-radius: 2px;
+  }
+
+  .icon-magic::before {
+    width: 24px;
+    height: 4px;
+    top: 14px;
+    left: 4px;
+    transform: rotate(45deg);
+  }
+
+  .icon-magic::after {
+    width: 4px;
+    height: 24px;
+    top: 4px;
+    left: 14px;
+    transform: rotate(45deg);
+  }
+
+  .icon-chart {
+    display: inline-flex;
+    align-items: end;
+    gap: 4px;
+    height: 32px;
+    width: 32px;
+    justify-content: center;
+  }
+
+  .icon-chart::before {
+    content: '';
+    width: 6px;
+    height: 16px;
+    background: white;
+    border-radius: 1px;
+  }
+
+  .icon-chart::after {
+    content: '';
+    width: 6px;
+    height: 24px;
+    background: white;
+    border-radius: 1px;
+  }
+
+  .icon-target {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border: 4px solid white;
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .icon-target::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    top: 6px;
+    left: 6px;
+  }
+
+  .icon-card {
+    display: inline-block;
+    width: 36px;
+    height: 24px;
+    border: 3px solid white;
+    border-radius: 6px;
+    position: relative;
+  }
+
+  .icon-card::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 3px;
+    background: white;
+    border-radius: 1px;
+    bottom: 3px;
+    left: 3px;
+  }
+
+  .icon-bell {
+    display: inline-block;
+    width: 24px;
+    height: 28px;
+    position: relative;
+  }
+
+  .icon-bell::before {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 20px;
+    background: white;
+    border-radius: 12px 12px 6px 6px;
+    top: 4px;
+  }
+
+  .icon-bell::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 4px;
+    background: white;
+    border-radius: 0 0 4px 4px;
+    bottom: 0;
+    left: 8px;
   }
 
   .sakura-feature-card h3 {
-    @apply text-xl font-semibold mb-4 text-sakura-gray-900 font-heading;
+    @apply text-xl font-semibold mb-3 text-sakura-gray-900 font-heading;
+    position: relative;
+    z-index: 1;
   }
 
   .sakura-feature-card p {
-    @apply text-sakura-gray-600 leading-relaxed;
+    @apply text-sakura-gray-600 leading-relaxed mb-0;
+    position: relative;
+    z-index: 1;
   }
 
   /* Sakura CTA Section */
