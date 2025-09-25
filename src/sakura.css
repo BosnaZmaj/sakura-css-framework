@@ -12,8 +12,6 @@
   body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom right, #ffffff 0%, #e2e8f0 100%) !important;
-    background-attachment: fixed;
     min-height: 100vh;
   }
 
@@ -155,10 +153,30 @@
 
   /* Sakura Hero Section */
   .sakura-hero {
-    @apply pt-48 pb-32 overflow-hidden relative;
+    @apply pt-48 pb-32 bg-gradient-to-br from-white to-sakura-gray-50 overflow-hidden relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
+  }
+
+  .sakura-hero::before {
+    content: '';
+    @apply absolute w-[1000px] h-[1000px] rounded-full;
+    top: -50%;
+    right: -20%;
+    background: radial-gradient(circle, rgba(91, 139, 245, 0.2) 0%, transparent 60%);
+    filter: blur(80px);
+    animation: sakuraHeroFloat 20s ease-in-out infinite;
+  }
+
+  .sakura-hero::after {
+    content: '';
+    @apply absolute w-[800px] h-[800px] rounded-full;
+    bottom: -30%;
+    left: -10%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
+    filter: blur(80px);
+    animation: sakuraHeroFloat 25s ease-in-out infinite reverse;
   }
 
 
